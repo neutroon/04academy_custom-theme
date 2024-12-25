@@ -79,7 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
         alert.style.marginTop = "5px";
         alert.style.textAlign = "start";
         alert.classList.add("alert");
-        element.parentElement.appendChild(alert);
+        if (element.classList.contains("phone-number")) {
+          element.parentElement.parentElement.appendChild(alert);
+        } else {
+          element.parentElement.appendChild(alert);
+        }
       }
       isValid = false;
     };
@@ -124,9 +128,23 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   selectors.form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
     if (!validateForm()) {
-      event.preventDefault();
+      return;
     }
+    event.preventDefault();
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Your order has been placed successfully!",
+      showConfirmButton: false,
+      timer: 2500,
+    }).then(() => {
+      selectors.form.reset();
+      selectors.paymentAdvance.checked = false;
+      updatePrice(0);
+    });
   });
 
   selectors.paymentAdvance.addEventListener("change", () => {
