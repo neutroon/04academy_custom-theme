@@ -1,0 +1,312 @@
+/*
+Theme Name: Custom Theme
+Author: hesham
+Description: WordPress theme for GoStudent-style order page.
+Version: 1.0
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white-color: white;
+  --secondary-bg: #f5f7f9;
+  --text-color: #92a9c0;
+  --gradient-color: linear-gradient(to right, #6d7dfb, #00b5f3);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body[dir="rtl"] {
+  direction: rtl;
+}
+
+body[dir="rtl"] .form-section {
+  text-align: right;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#order-form {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  background: var(--white-color);
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#order-form label {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+  color: var(--text-color);
+  font-size: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#order-form label span {
+  color: black;
+  text-transform: lowercase;
+  text-decoration: underline;
+}
+
+#order-form input:not([type="radio"], [type="checkbox"]),
+#order-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: var(--secondary-bg);
+}
+
+#order-form input[type="submit"] {
+  background: var(--gradient-color);
+  color: var(--white-color);
+  border: 1px solid black;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.form-section,
+.order-summary {
+  flex: 1;
+  padding: 20px;
+  padding-top: 36px;
+}
+
+.form-section h2,
+.form-section p {
+  text-align: center;
+}
+
+.form-section h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.form-section p {
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 15px;
+}
+
+.form-section .address,
+.form-section .city-country {
+  display: flex;
+  gap: 10px;
+}
+
+.form-section .address input[name="address"] {
+  flex-basis: 70%;
+}
+
+.form-section .address input[name="nr"] {
+  flex-basis: 30%;
+}
+
+.form-section .payment-methods .payment-method {
+  padding: 10px;
+  border: 1px solid var(--secondary-bg);
+  transition: 0.3s background-color;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-section .payment-methods .payment-method:hover {
+  background: rgba(128, 128, 128, 0.6);
+}
+
+.form-section > span:last-child {
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.order-summary {
+  background: var(--secondary-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.order-summary h3 {
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.order-summary .duration-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-summary .duration-container .duration-item {
+  flex-basis: 33.33%;
+  background: var(--white-color);
+  padding: 10px;
+  color: var(--text-color);
+  border: 1px solid var(--secondary-bg);
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.order-summary .duration-container .duration-item:hover,
+.order-summary .duration-container .duration-item.selected {
+  background: var(--gradient-color);
+  color: var(--white-color);
+}
+
+.order-summary .payment-advance {
+  margin: 36px 0;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.switch {
+  position: relative;
+  width: 34px !important;
+  height: 20px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider::before {
+  transform: translateX(10px);
+}
+
+.toggle-label {
+  color: black !important;
+}
+.toggle-label span {
+  text-decoration: none !important;
+}
+
+.order-summary .order-overview p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: var(--text-color);
+}
+
+.order-summary .order-overview p span {
+  color: black;
+}
+
+.order-summary .order-overview p.discount,
+.order-summary .order-overview p.discount span {
+  color: green;
+}
+
+.order-summary .order-overview hr {
+  margin: 20px 0;
+  border: 1px solid var(--white-color);
+}
+
+.order-summary .order-overview hr ~ p span {
+  color: blue;
+}
+
+.order-summary .terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.order-summary .terms label {
+  text-transform: capitalize !important;
+}
+
+.order-summary .satisfaction {
+  margin-top: auto;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-color);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  #order-form {
+    flex-direction: column;
+  }
+  .form-section,
+  .order-summary {
+    padding: 15px;
+  }
+
+  .form-section h2 {
+    font-size: 18px;
+  }
+
+  .form-section p {
+    font-size: 14px;
+  }
+
+  .order-summary .duration-container .duration-item {
+    flex-basis: 50%;
+  }
+
+  #order-form {
+    gap: 10px;
+  }
+}
+@media (max-width: 350px) {
+  .order-summary .duration-container,
+  .form-section .address,
+  .form-section .city-country {
+    flex-direction: column;
+  }
+}
