@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Theme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
     <?php wp_head(); ?>
 </head>
 
@@ -17,12 +18,12 @@
 
                 <div class="field-container">
                     <label for="stuPhone">Login Phone Number <span>(preferably the student's)</span></label>
-                    <input type="tel" id="stuPhone" name="stuPhone" maxlength="15">
+                    <input type="tel" id="stuPhone" class="phone-number" name="stuPhone" maxlength="15">
                 </div>
 
                 <div class="field-container">
                     <label for="parePhone">Contact Phone Number <span>(preferably the parent's)</span></label>
-                    <input type="tel" id="parePhone" name="parePhone" maxlength="15">
+                    <input type="tel" id="parePhone" class="phone-number" name="parePhone" maxlength="15">
                 </div>
 
                 <div class="field-container">
@@ -32,7 +33,7 @@
 
                 <div class="field-container">
                     <label for="name">Contact Name</label>
-                    <input type="text" id="name" name="name" maxlength="50" required>
+                    <input type="text" id="name" name="name" maxlength="50">
                 </div>
 
                 <div class="field-container">
@@ -47,7 +48,7 @@
                             <input type="text" id="postalCode" name="postalCode" placeholder="Postal Code"
                                 maxlength="10" required>
                             <input type="text" id="city" name="city" placeholder="City" maxlength="50" required>
-                            <select name="country" id="country" required>
+                            <select name="country" id="country">
                                 <option value="" disabled selected hidden>Country</option>
                                 <option value="Eg">Egypt</option>
                                 <option value="Sa">Saudi Arabia</option>
@@ -121,7 +122,7 @@
                 </div>
 
                 <div class="terms">
-                    <input type="checkbox" name="terms" id="terms" required>
+                    <input type="checkbox" name="terms" id="terms">
                     <label for="terms">
                         I accept the <a href="#">Terms & Conditions</a> and understand my <a href="#">right of
                             withdrawal</a> as well as the circumstances that lead to repeal of the same.
@@ -137,6 +138,33 @@
     </main>
 
     <?php wp_footer(); ?>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const phoneInputs = document.querySelectorAll(".phone-number");
+        phoneInputs.forEach((input) => {
+            input.style.paddingLeft = '48px'
+        })
+
+        phoneInputs.forEach((phoneInput) => {
+            intlTelInput(phoneInput, {
+                initialCountry: "auto",
+                geoIpLookup: (callback) => {
+                    fetch("https://ipinfo.io/json?token=your_token")
+                        .then((resp) => resp.json())
+                        .then((data) => callback(data.country))
+                        .catch(() => callback("eg"));
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+            phoneInput.parentElement.style.width = '100%';
+            const itiDropdown = document.querySelector('.iti--container');
+
+
+        });
+    });
+    </script>
 </body>
 
 </html>
