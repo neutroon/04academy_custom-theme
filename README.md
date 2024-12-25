@@ -12,8 +12,7 @@ This project implements a custom WordPress theme replicating the GoStudent order
 - **RTL Layout Support:** Supports Right-to-Left text direction for multi-language use.
 
 ## Technologies Used
-- **HTML5, CSS3 (Flexbox, Grid), and ES6+ JavaScript**
-- **WordPress REST API Integration**
+- **HTML5, CSS3 (Flexbox), and ES6+ JavaScript**
 - **SweetAlert2 for notifications**
 - **International Telephone Input (ITI) plugin for country flags**
 - **Mobile-first Responsive Design**
